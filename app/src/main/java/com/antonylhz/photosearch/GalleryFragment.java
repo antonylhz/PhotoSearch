@@ -11,7 +11,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.*;
+import android.widget.ArrayAdapter;
 import android.widget.SearchView;
+import android.widget.Spinner;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -150,8 +152,22 @@ public class GalleryFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_main, menu);
+        setupSearchEngineSpinnerMenu(menu.findItem(R.id.menu_search_engine_spinner));
+        setupSearchMenu(menu.findItem(R.id.menu_item_search));
+    }
 
-        MenuItem searchItem = menu.findItem(R.id.menu_item_search);
+    private void setupSearchEngineSpinnerMenu(MenuItem spinnerItem) {
+        View view = spinnerItem.getActionView();
+        if(view instanceof Spinner) {
+            Spinner spinner = (Spinner) view;
+            spinner.setAdapter(ArrayAdapter.createFromResource(
+                    getContext(), R.array.pref_search_engine,
+                    android.R.layout.simple_spinner_dropdown_item
+            ));
+        }
+    }
+
+    private void setupSearchMenu(MenuItem searchItem) {
         mSearchView = (SearchView) searchItem.getActionView();
 
         SearchManager searchManager = (SearchManager) getActivity()

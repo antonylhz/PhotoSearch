@@ -3,5 +3,6 @@
     <string name="search">Search</string>
     <string name="move">Move To Top</string>
     <string name="clear">Clear Search History</string>
-    <string name="search_hint">Search Flickr</string>
+    <string name="search_hint">Search</string>
+    <string name="search_engine_default">Google</string>
 </resources>

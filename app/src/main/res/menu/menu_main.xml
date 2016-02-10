@@ -2,22 +2,29 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_item_search"
-        android:title="@string/search"
-        android:icon="@android:drawable/ic_menu_search"
-        app:showAsAction="ifRoom"
-        app:actionViewClass="android.widget.SearchView"
+            android:id="@+id/menu_search_engine_spinner"
+            android:title="@string/search_engine_default"
+            app:actionViewClass="android.widget.Spinner"
+            android:visible="true"
+            app:showAsAction="always"
+            />
+    <item
+            android:id="@+id/menu_item_search"
+            android:title="@string/search"
+            android:icon="@android:drawable/ic_menu_search"
+            app:showAsAction="ifRoom"
+            app:actionViewClass="android.widget.SearchView"
         />
     <item
-        android:id="@+id/menu_item_move"
-        android:title="@string/move"
-        android:icon="@android:drawable/ic_menu_revert"
-        app:showAsAction="ifRoom"
+            android:id="@+id/menu_item_move"
+            android:title="@string/move"
+            android:icon="@android:drawable/ic_menu_revert"
+            app:showAsAction="ifRoom"
         />
     <item
-        android:id="@+id/menu_item_clear"
-        android:title="@string/clear"
-        android:icon="@android:drawable/ic_menu_close_clear_cancel"
-        app:showAsAction="ifRoom"
+            android:id="@+id/menu_item_clear"
+            android:title="@string/clear"
+            android:icon="@android:drawable/ic_menu_close_clear_cancel"
+            app:showAsAction="ifRoom"
         />
 </menu>
