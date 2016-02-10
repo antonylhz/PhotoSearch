@@ -11,6 +11,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.*;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.SearchView;
 import android.widget.Spinner;
@@ -19,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.antonylhz.photosearch.flickr.FlickrSearchClient;
 import com.antonylhz.photosearch.google.GoogleSearchClient;
 import com.reginald.swiperefresh.CustomSwipeRefreshLayout;
 import org.json.JSONObject;
@@ -164,6 +166,33 @@ public class GalleryFragment extends Fragment {
                     getContext(), R.array.pref_search_engine,
                     android.R.layout.simple_spinner_dropdown_item
             ));
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    switch (position) {
+                        case 0:
+                            if (!(mSearchClient instanceof GoogleSearchClient)) {
+                                mSearchClient = GoogleSearchClient.getInstance();
+                                refresh();
+                            }
+                            break;
+                        case 1:
+                            if (!(mSearchClient instanceof FlickrSearchClient)) {
+                                mSearchClient = FlickrSearchClient.getInstance();
+                                refresh();
+                            }
+                            break;
+                        default:
+
+                    }
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
         }
     }
 
@@ -181,6 +210,8 @@ public class GalleryFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         boolean selectionHandled;
         switch (item.getItemId()) {
+            case R.id.menu_search_engine_spinner:
+
             case R.id.menu_item_search:
                 getActivity().onSearchRequested();
                 selectionHandled = true;
