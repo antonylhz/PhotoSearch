@@ -4,6 +4,5 @@
 *.iml
 bin/
 local.properties
-app/build/
 .gradle
-build
+build/

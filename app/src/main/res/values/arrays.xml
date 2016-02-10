@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_search_engine">
+        <item>Google</item>
+        <item>Flickr</item>
+    </string-array>
+</resources>
