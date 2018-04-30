@@ -3,7 +3,6 @@ package com.antonylhz.photosearch.google;
 import android.util.Log;
 import com.antonylhz.photosearch.GalleryItem;
 import com.antonylhz.photosearch.SearchClient;
-import com.antonylhz.photosearch.flickr.FlickrSearchClient;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.http.javanet.NetHttpTransport;
@@ -23,11 +22,7 @@ import java.util.List;
  *
  * Example API REST call
  *
- * https://www.googleapis.com/customsearch/v1?
- *      q=cat&
- *      cx=010595824610626994902%3Azvnsp0ycbiw&
- *      searchType=image&
- *      key=AIzaSyDrH8CwM2dxEVAMkzwkbqqChaWUIHGJKhk
+ * https://www.googleapis.com/customsearch/v1?q=cat&cx=010595824610626994902%3Azvnsp0ycbiw&searchType=image&key=AIzaSyDrH8CwM2dxEVAMkzwkbqqChaWUIHGJKhk
  *
  *
  * Due to the limited daily search allowance (100),
@@ -36,8 +31,6 @@ import java.util.List;
  */
 public class GoogleSearchClient implements SearchClient {
     private static final String LOG_TAG = GoogleSearchClient.class.getSimpleName();
-
-    private static final int PAGE_COPACITY = 10;
 
     private static final String CX = "010595824610626994902:zvnsp0ycbiw";
     private static final String KEY = "AIzaSyDrH8CwM2dxEVAMkzwkbqqChaWUIHGJKhk";
@@ -50,7 +43,7 @@ public class GoogleSearchClient implements SearchClient {
 
     public static GoogleSearchClient getInstance() {
         if (instance == null) {
-            synchronized (FlickrSearchClient.class) {
+            synchronized (GoogleSearchClient.class) {
                 if (instance == null) {
                     instance = new GoogleSearchClient();
                 }

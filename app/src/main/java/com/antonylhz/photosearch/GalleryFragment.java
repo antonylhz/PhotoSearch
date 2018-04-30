@@ -113,6 +113,9 @@ public class GalleryFragment extends Fragment {
                 .getString(SearchClient.PREF_SEARCH_QUERY, null);
 
         String url = mSearchClient.getUrl(query, count);
+        if (url == null) {
+            return;
+        }
 
         JsonObjectRequest request = new JsonObjectRequest(url,
                 new Response.Listener<JSONObject>() {
@@ -131,7 +134,7 @@ public class GalleryFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        Log.e(TAG, "Volley failed", error);
                     }
                 }
         );
